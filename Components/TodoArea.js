@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, FlatList} from 'react-native';
 import TodoRow from './TodoRow';
 
 export default class TodoList extends React.Component {
@@ -7,24 +7,27 @@ export default class TodoList extends React.Component {
 
         const todoRows = [];
 
-        this.props.todos.forEach(todo => {
-            console.log("todo: " + todo.title);
-            todoRows.push((
-                <TodoRow style={{backgroundColor: 'red'}} todo={todo} key={todo.title}></TodoRow>
-            ));
-        });
 
+        this.props.todos.forEach(todo => {
+            if(todo.title.includes(this.props.inputText)) {
+                todoRows.push((
+                    todo
+                ));
+            }
+        });
         return (
-        <View style={styles.todoListBox}>
-            {todoRows}
-        </View>
+        <FlatList data={todoRows}
+                  renderItem={({item}) => (<TodoRow todo={item} inputText={this.props.inputText}></TodoRow>)}
+                  keyExtractor={(item, index) => item.title}
+                  filter
+                  style={styles.todoListBox}>
+        </FlatList>
         )
     }
 }
 
 const styles = StyleSheet.create({
     todoListBox: {
-        justifyContent: 'space-around',
         flex: 1
     }
 });

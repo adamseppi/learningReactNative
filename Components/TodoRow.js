@@ -9,7 +9,7 @@ export default class TodoList extends React.Component {
 
         return (
         <View style={styles.todoRow}>
-            <View style={styles.todoTitle}><Text>{person.title}</Text></View>
+            <View style={styles.todoTitle}><Text>{this.props.todo.title}</Text></View>
             <View style={styles.todoX}><Text>X</Text></View>
         </View>
         )
@@ -20,17 +20,19 @@ const styles = StyleSheet.create({
     todoRow: { 
         flex: 1,
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: '#eee',
+        marginBottom: 10,
+        borderRadius: 10,
+        height: 100
     },
     todoTitle: {
         flex: 4,
-        height: 30,
-        backgroundColor: 'green'
     },
     todoX: {
         flex:1,
-        height: 30,
-        backgroundColor: 'yellow'
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 });
 
