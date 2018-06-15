@@ -17,7 +17,7 @@ export default class TodoList extends React.Component {
         });
         return (
         <FlatList data={todoRows}
-                  renderItem={({item}) => (<TodoRow todo={item} inputText={this.props.inputText}></TodoRow>)}
+                  renderItem={({item}) => (<TodoRow todo={item} inputText={this.props.inputText} handleDeleteButton={this.props.handleDeleteButton}></TodoRow>)}
                   keyExtractor={(item, index) => item.title}
                   filter
                   style={styles.todoListBox}>
