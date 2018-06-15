@@ -2,11 +2,10 @@ import React from 'react';
 import {StyleSheet, Text, View, FlatList} from 'react-native';
 import TodoRow from './TodoRow';
 
-export default class TodoList extends React.Component {
+export default class TodoArea extends React.Component {
     render () {
 
         const todoRows = [];
-
 
         this.props.todos.forEach(todo => {
             if(todo.title.includes(this.props.inputText)) {

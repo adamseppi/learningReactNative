@@ -1,15 +1,14 @@
 import React from 'react';
 import {StyleSheet, Text, View, Button, TouchableOpacity} from 'react-native';
-import TodoRow from './TodoRow';
-import { yellow } from 'ansi-colors';
+import { withNavigation } from 'react-navigation';
 
-export default class TodoList extends React.Component {
+class TodoRow extends React.Component {
     render () {
         const todo = this.props.todo;
 
         return (
         <View style={styles.todoRow}>
-            <TouchableOpacity style={styles.todoRow} >
+            <TouchableOpacity style={styles.todoRow} onPress={() => this.props.navigation.navigate("DetailScreen", { todo: todo })}>
                 <View style={styles.todoTitle}><Text>{todo.title}</Text></View>
                 <View style={styles.todoX}><Button onPress={() => this.props.handleDeleteButton(todo)} title="X"></Button></View>
             </TouchableOpacity>
@@ -17,6 +16,8 @@ export default class TodoList extends React.Component {
         )
     }
 }
+
+export default withNavigation(TodoRow);
 
 const styles = StyleSheet.create({
     todoRow: { 
