@@ -1,9 +1,10 @@
 import React from 'react';
-import {StyleSheet, Text, TextInput, View, Keyboard} from 'react-native';
+import {StyleSheet, Text, TextInput, View, Keyboard, TouchableOpacity} from 'react-native';
+import { withNavigation } from 'react-navigation';
 import TodoArea from './TodoArea';
-import { blue } from 'ansi-colors';
+import { blue, black } from 'ansi-colors';
 
-export default class TodoList extends React.Component {
+class TodoList extends React.Component {
 
     static navigationOptions = {
         title: 'Adam Seppi\'s Todo List',
@@ -45,12 +46,19 @@ export default class TodoList extends React.Component {
     render () {
         return (
         <View style={styles.todoList}>
-            <TextInput style={styles.todoFilter} placeholder="Filter Todo's by Name" onChangeText={this.handleTextInput}></TextInput>
+            <View style={styles.todoTop}>
+                <TextInput style={styles.todoFilter} placeholder="Filter Todo's by Name" onChangeText={this.handleTextInput}></TextInput>
+                <TouchableOpacity style={styles.todoAddButton} onPress={() => this.props.navigation.navigate("NewItemScreen")}>
+                    <Text style={{fontSize:40, color: "#007AFF", textAlign: "center", justifyContent: "center", paddingBottom: 53}}>+</Text>
+                </TouchableOpacity>
+            </View>
             <TodoArea todos={this.state.todos} style={styles.todoArea} inputText={this.state.inputText} handleDeleteButton={this.handleDeleteButton}></TodoArea>
         </View>
         )
     }
 }
+
+export default withNavigation(TodoList);
 
 const styles = StyleSheet.create({
     todoList: {
@@ -63,10 +71,26 @@ const styles = StyleSheet.create({
         margin: 20,
         paddingLeft: 10,
         backgroundColor: '#eee',
-        borderRadius: 5
-    },
-    todoArea: {
+        borderRadius: 5,
         flex: 1
+    },
+    todoArea: { 
+        flex: 1
+    },
+    todoTop: {
+        flex: 0,
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    todoAddButton: {
+        flex: 0,
+        height: 45,
+        width: 45,
+        borderColor: '#007AFF',
+        borderWidth: 2,
+        borderRadius: 45,
+        marginRight: 20,
+        justifyContent: 'space-around'
     }
 });
 

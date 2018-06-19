@@ -1,9 +1,9 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
-export default class TodoArea extends React.Component {
+export default class TodoDetails extends React.Component {
     static navigationOptions = {
-        title: 'Adam Seppi\'s Todo List',
+        title: 'Adam Seppi\'s Todo List Details',
     }
 
     render () {

@@ -3,11 +3,13 @@ import { StyleSheet, Text, TextInput, View, Dimensions, Button  } from 'react-na
 import { createStackNavigator } from 'react-navigation';
 import TodoList from './Components/TodoList';
 import TodoDetails from './Components/TodoDetails';
+import TodoNewItem from './Components/TodoNewItem';
 
 
 const MainScreenNavigator = createStackNavigator({
   HomeScreen: { screen: TodoList},
-  DetailScreen: { screen: TodoDetails}
+  DetailScreen: { screen: TodoDetails},
+  NewItemScreen: { screen: TodoNewItem }
 });
 
 export default class App extends React.Component {
